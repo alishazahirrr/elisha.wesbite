@@ -1,0 +1,902 @@
+.shipping-banner {
+  background-color: black;   /* black background */
+  color: white;              /* white text */
+  text-align: center;        /* center the text */
+  padding: 10px 0;           /* some space top and bottom */
+}
+
+.shipping-banner h1 {
+  margin: 0;                 /* remove default margin */
+  font-size: 20px;           /* adjust size as needed */
+  font-weight: normal;       /* optional: make it not too bold */
+}
+ .navbar {
+    border-top: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Navbar links style */
+  .navbar-nav .nav-link {
+    font-size: 1.1rem;     /* thoda bara font */
+    font-weight: 600;      /* bold */
+    color: rgb(95, 92, 92);           /* black text */
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  /* Black underline on hover or active */
+  .navbar-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: black;
+    left: 0;
+    bottom: 0;
+    transition: width 0.3s;
+  }
+
+  .navbar-nav .nav-link:hover::after,
+  .navbar-nav .nav-link.active::after {
+    width: 100%;
+  }
+
+  /* Optional: Better spacing on mobile too */
+  @media (max-width: 991px) {
+    .navbar-nav {
+      flex-direction: column !important;
+      align-items: center;
+    }
+
+    .navbar-nav .nav-link {
+      padding: 0.5rem 0;
+    }
+  }
+  .hero-section {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0,0,0,0.3)), url('assets/banner.jpg') center/cover no-repeat;
+  height: 90vh;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.hero-section h5 {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.hero-section button {
+  font-size: 1rem;
+  border-radius: 0;
+  transition: 0.3s ease;
+}
+
+.hero-section button:hover {
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: 70vh;
+    text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .hero-section .col-md-6 {
+    padding-left: 0 !important;
+  }
+
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+}
+.img-row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px;
+}
+
+.img-box {
+  text-align: center;
+}
+
+.img-style {
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: none;
+}
+
+
+.caption {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 8px;
+  font-size: 14px;
+  color: #444;
+  font-weight: 500;
+}
+
+.code {
+  text-align: left;
+}
+
+.price {
+  text-align: right;
+}
+@media (max-width: 1200px) {
+  .img-style {
+    width: 100%;
+    height: auto;
+  }
+
+  .img-box {
+    flex: 1 1 100%;
+    max-width: 90%;
+    margin: auto;
+  }
+
+  .caption {
+    font-size: 13px;
+  }
+}
+@media (max-width: 992px) {
+  .img-style {
+    width: 100%;
+    height: auto;
+  }
+
+  .img-box {
+    flex: 1 1 100%;
+    max-width: 90%;
+    margin: auto;
+  }
+
+  .caption {
+    font-size: 13px;
+  }
+}
+@media (max-width: 768px) {
+  .img-style {
+    width: 100%;
+    height: auto;
+  }
+
+  .img-box {
+    flex: 1 1 100%;
+    max-width: 90%;
+    margin: auto;
+  }
+
+  .caption {
+    font-size: 13px;
+  }
+}
+.shop-type-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0;
+}
+
+.line {
+  height: 8px;
+  width: 30%; /* shorter line */
+  background-color: #888484; /* dark gray */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.shop-type-box {
+  background-color: #333; /* dark gray */
+  color: white;
+  padding: 20px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  z-index: 2;
+  position: relative;
+  height: 70px;
+}
+@media (max-width: 900px) {
+  .shop-type-box {
+    font-size: 16px;
+    padding: 6px 12px;
+  }
+
+  .line {
+    height: 6px;
+    width: 300px;
+  }
+}
+@media (max-width: 600px) {
+  .shop-type-box {
+    font-size: 16px;
+    padding: 25px 12px;
+  }
+ 
+
+  .line {
+    height: 6px;
+    width: 300px;
+  }
+}
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.category {
+    text-align: center;
+}
+
+.circle {
+    width: 150px;
+    height: 150px;
+    background: #ddd; /* inner light gray */
+    border: 10px solid #555; /* outer dark gray */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.circle img {
+    width: 70%;
+    height: 80%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.category h3 {
+    margin: 10px 0 5px 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.category button {
+    background: #d9d1c6;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #333;
+}
+.circle:hover {
+    transform: scale(1.05);
+}
+
+.category button:hover {
+    background: #c4b9ad;
+}
+@media (max-width: 768px) {
+    .category {
+        max-width: 95%; /* 2 per row cleanly */
+    }
+    .circle {
+        width: 100px;
+        height: 100px;
+    }
+    .category h3 {
+        font-size: 16px;
+    }
+    .category button {
+        font-size: 13px;
+        padding: 6px 14px;
+    }
+}
+
+/* ✅ For small mobiles: maintain 2 per row, reduce size more */
+@media (max-width: 480px) {
+      .category {
+        max-width: 95%; /* 2 per row cleanly */
+    }
+    .circle {
+        width: 100px;
+        height: 100px;
+    }
+    .category h3 {
+        font-size: 16px;
+    }
+    .category button {
+        font-size: 13px;
+        padding: 6px 14px;
+    }
+}
+
+.section-title {
+    font-size: 28px;
+    color: #555;
+    margin: 30px 0 20px 0;
+    text-align: center;
+}
+
+.gray-bg {
+    background-color: #eaeaea; /* light gray */
+    width: 100%;
+    padding: 20px 0;
+}
+
+.image-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    max-width: 1200px;
+    margin: 15px auto;
+    padding: 0 10px;
+}
+
+.four-grid .grid-item {
+    flex: 1 1 22%; /* 4 per row */
+    max-width: 22%;
+    aspect-ratio: 1 / 1;
+}
+
+.two-grid .grid-item {
+    flex: 1 1 45%; /* 2 per row */
+    max-width: 45%;
+    aspect-ratio: 1 / 1;
+}
+
+.grid-item {
+    overflow: hidden;
+    border-radius: 12px;
+    background: #fff;
+    /* Permanent darker shadow */
+    box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s;
+}
+
+.grid-item:hover {
+    transform: scale(1.02);
+    /* No shadow change on hover, remains same */
+}
+
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.grid-item img:hover {
+    transform: scale(1.05);
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    .four-grid .grid-item,
+    .two-grid .grid-item {
+        flex: 1 1 45%; /* 2 per row */
+        max-width: 45%;
+    }
+}
+
+/* Mobiles */
+@media (max-width: 480px) {
+    .four-grid .grid-item,
+    .two-grid .grid-item {
+        flex: 1 1 90%; /* 1 per row */
+        max-width: 90%;
+    }
+}
+.middle-grid .grid-item,
+.bottom-grid .grid-item {
+    overflow: hidden;
+    border-radius: 12px;
+    background: #fff;
+    transition: transform 0.3s;
+}
+
+.middle-grid .grid-item img,
+.bottom-grid .grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* this shows full image without crop */
+    display: block;
+    background: #fff; /* optional, so empty areas appear white */
+}
+.shop-type-box2 {
+  background-color: #333; /* dark gray */
+  color: white;
+  padding: 20px 50px;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  z-index: 2;
+  position: relative;
+  height: 70px;
+  width: 200px;
+}
+.elisha-carousel-wrap {
+      position: relative;
+      max-width: 1200px;
+      margin: 40px auto;
+      overflow: hidden;
+      padding: 20px 40px;
+    }
+
+    .elisha-carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+      gap: 40px;
+    }
+
+    .elisha-carousel-item {
+      flex: 0 0 calc(25% - 30px); /* 4 visible */
+      text-align: center;
+    }
+
+    .elisha-circle {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 8px solid #555;
+      margin: 0 auto 10px;
+    }
+
+    .elisha-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .elisha-caption {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #333;
+    }
+
+    .elisha-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .elisha-arrow img {
+      width: 40px;
+      height: auto;
+    }
+
+    .elisha-arrow-left {
+      left: 0;
+    }
+
+    .elisha-arrow-right {
+      right: 0;
+    }
+
+    @media (max-width: 992px) {
+      .elisha-carousel-item {
+        flex: 0 0 calc(50% - 30px); /* 2 visible */
+      }
+    }
+
+  
+@media (max-width: 600px) {
+  .elisha-carousel-track {
+    gap: 0 !important; /* remove gaps on mobile for exact alignment */
+    justify-content: flex-start !important;
+  }
+  .elisha-carousel-item {
+    flex: 0 0 100% !important; /* each item takes full width */
+  }
+}
+
+ .elisha-top-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px; /* spacing between images */
+      padding: 40px 20px;
+      flex-wrap: wrap; /* responsive wrapping */
+    }
+
+    .elisha-top-row img {
+      width: 280px;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .elisha-bottom-row {
+      background-color: #f2f2f2; /* light gray background */
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px 20px;
+      flex-wrap: wrap; /* responsive */
+    }
+
+    .elisha-bottom-row img {
+      width: 180px;
+      height: auto;
+      display: block;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      border-radius: 6px;
+      background-color: white;
+    }
+
+    @media (max-width: 992px) {
+      .elisha-top-row img {
+        width: 80%;
+      }
+      .elisha-bottom-row img {
+        width: 40%;
+      }
+    }
+    .alisha-divider-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 40px 0;
+    }
+
+    .alisha-divider-line {
+      flex: 1;
+      height: 4px;
+      background: linear-gradient(to right, #555, #888, #555);
+      max-width: 10%;
+    }
+
+    .alisha-divider-text {
+      margin: 0 20px;
+      font-size: 30px;
+      font-weight: 700;
+      color: #555;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 768px) {
+      .alisha-divider-line {
+        max-width: 10%;
+      }
+      .alisha-divider-text {
+        font-size: 18px;
+        margin: 0 10px;
+      }
+    }
+    .elisha-top-row img:hover {
+    transform: scale(1.02);}
+    /* Responsive adjustments */
+@media (max-width: 1200px) {
+    .elisha-top-row img {
+        width: 250px; /* Slightly smaller on large tablets */
+    }
+}
+
+@media (max-width: 992px) {
+    .elisha-top-row {
+        flex-wrap: nowrap; /* Force single line */
+    }
+    .elisha-top-row img {
+        width: 200px; /* Smaller images */
+    }
+}
+
+@media (max-width: 768px) {
+    .elisha-top-row {
+        flex-wrap: wrap; /* Now wrap on very small screens */
+        justify-content: center;
+    }
+    .elisha-top-row img {
+        width: 50%;
+        max-width: 200px;
+    }
+}
+@media (max-width: 600px) {
+    .elisha-top-row {
+        flex-wrap: wrap; /* Now wrap on very small screens */
+        justify-content: center;
+    }
+    .elisha-top-row img {
+        width: 40%;
+        max-width: 130px;
+    }
+}
+ .alisha-deals-section {
+      padding: 40px 20px;
+      background: #ffffff;
+      text-align: center;
+    }
+
+    .alisha-deals-grid {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .alisha-deals-item {
+      width: 250px;
+      flex: 0 0 auto;
+    }
+
+.alisha-deals-item img {
+    width: 100%;
+    height: 320px;             /* fixed height for uniformity */
+    object-fit: cover;         /* crop extra */
+    object-position: top;      /* focus upar, neeche se cut ho */
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+    .alisha-deals-item img:hover {
+      transform: scale(1.03);
+    }
+
+    .alisha-deals-caption {
+      margin-top: 8px;
+      font-size: 16px;
+      color: #333;
+      font-weight: 600;
+    }
+
+    .alisha-deals-subcaption {
+      font-size: 14px;
+      color: #555;
+      font-weight: 500;
+    }
+
+  .alisha-banner-img {
+    width: 95%;             /* nearly full width with small side gaps */
+    max-width: 1300px;      /* prevents over-expansion on ultra-wide screens */
+    height: auto;           /* maintain aspect ratio */
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    display: block;
+    margin: 20px auto;      /* top and bottom breathing space, center alignment */
+}
+
+    @media (max-width: 992px) {
+      .alisha-deals-item {
+        width: 30%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .alisha-deals-item {
+        width:0%;
+      }
+    }
+.custom-carousel-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 40px 0;
+  overflow: hidden;
+  align-items: flex-start; /* arrows aur cards ko upar align karega */
+  position: relative;
+}
+
+.custom-arrow {
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 37px; /* arrows ko thoda neeche ya upar adjust karne ke liye */
+}
+
+.custom-arrow img {
+  width: 100%;
+  height: 100%;
+}
+
+.custom-cards-wrapper {
+  display: flex;
+  gap: 40px;
+  transition: transform 0.5s ease;
+}
+
+.custom-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 auto; /* prevent shrinking */
+}
+
+.custom-image-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 6px solid #5a4a42;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.custom-image-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* image poori nazar aayegi, crop nahi hogi */
+}
+
+.custom-title {
+  font-size: 16px;
+  color: #333;
+  margin: 8px 0;
+  text-align: center;
+}
+
+.custom-button {
+  margin-top: 8px;
+  padding: 8px 20px;
+  background-color: #4e4a45;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.custom-button:hover {
+  background-color: #333;
+}
+
+/* Responsive behavior */
+@media (max-width: 600px) {
+  .custom-cards-wrapper {
+    width: 160px; /* just enough to show one card */
+    overflow: hidden;
+  }
+  .custom-card {
+    margin-right: 0; /* handled by JS scroll */
+  }
+}
+/* Already defined somewhere */
+.alisha-deals-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: nowrap; /* important to keep in one line */
+}
+
+.alisha-deals-item img {
+  width: 250px;
+  height: 300px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+  .alisha-deals-grid {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .alisha-deals-item {
+    flex: 0 0 auto;
+    width: 220px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .alisha-deals-item img {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    object-position: top; /* 🩶 This aligns the image top, cropping from the bottom */
+    border-radius: 8px;
+  }
+
+  .alisha-deals-caption,
+  .alisha-deals-subcaption {
+    font-size: 14px;
+    text-align: center;
+    margin: 2px 0;
+  }
+}
+.footer {
+  background-color: #e0d6ca;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.footer-logo img {
+  width: 120px;
+}
+
+.footer-section h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #333;
+}
+
+.footer-section p {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.social-icons a {
+  font-size: 20px;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #000; /* hover effect */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer-section {
+    width: 100%;
+  }
+}
+
