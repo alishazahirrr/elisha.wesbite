@@ -864,6 +864,7 @@
   background-color: #e0d6ca;
   padding: 40px 20px;
   font-family: Arial, sans-serif;
+ 
 }
 
 .footer-container {
@@ -930,5 +931,129 @@
   .footer-section {
     width: 100%;
   }
+}
+    .hover-effect img {
+      transition: transform 0.4s ease, box-shadow 0.3s ease;
+    }
+
+    .hover-effect:hover img {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+    }
+ .equal-box-3 {
+  width: 100%;
+  height: auto; /* Let height adjust with content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.equal-box-3 img {
+  width: 100%;
+  height: 480px; /* Fixed image height */
+  object-fit: cover; /* Keeps proportions clean and centered */
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.equal-box-3 h5,
+.equal-box-3 p {
+  margin-top: 6px;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+
+.equal-box-3:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+img {
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.05);
+}
+.newarrival{
+  height: 700px;
+  width: 900px;
+  padding-bottom: 30px;
+}
+.side-img{
+  height: 340px;
+  width: 200px;
+  padding-bottom: 30px;
+  
+
+}
+.newarrivals{
+  font-size: 40px;
+  
+}
+
+@media (max-width: 768px) {
+  .equal-box-fixed {
+    width: 40px;
+  }
+
+  .equal-box-fixed img {
+    height: 200px;
+  }
+
+  .equal-box-fixed h5 {
+    font-size: 1rem;
+  }
+
+  .equal-box-fixed p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .equal-box-fixed {
+    width: 100px;
+  }
+
+  .equal-box-fixed img {
+    height: 100px;
+  }
+
+  .equal-box-fixed h5 {
+    font-size: 0.95rem;
+  }
+
+  .equal-box-fixed p {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 600px) {
+ .newarrival {
+    width: 50% !important;
+    height: 300px !important;
+    object-fit: cover !important;
+     display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+  }
+.newarrivals{
+  font-size: 27px;
+
+}
+
+
+.side-img{
+  height: 250px;
+  width: 300px;
+ 
+}
+
 }
 
