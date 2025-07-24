@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us</title>
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+     <!-- 🔷 ROW 1: Logo Center + Icons Right -->
+<div class="container py-3 position-relative">
+    <!-- Center Logo -->
+    <div class="logo-center">
+        <img src="assets/elishalogo.jpg" alt="Elisha Logo" style="height:60px;">
+    </div>
+
+    <!-- Right Icons aligned exactly right -->
+    <div class="header-icons">
+        <a href="#"><i class="bi bi-search"></i></a>
+        <a href="#"><i class="bi bi-person"></i></a>
+        <a href="#"><i class="bi bi-bag"></i></a>
+    </div>
+</div>
+
+
+
+ <!-- 🔷 MOBILE FRIENDLY NAVBAR -->
+<nav class="navbar navbar-expand-lg bg-white border-bottom py-2">
+  <div class="container-fluid">
+    
+    <!-- Left side logo -->
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="assets/elishalogo.jpg" alt="Elisha Logo" style="height:50px;">
+    </a>
+    
+    <!-- Right side toggler -->
+    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu items (collapsed on small screens) -->
+    <div class="collapse navbar-collapse justify-content-center" id="mainNavbar">
+      <ul class="navbar-nav gap-4">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="women.html">Women</a></li>
+        <li class="nav-item"><a class="nav-link" href="stitched.html">Stitched</a></li>
+        <li class="nav-item"><a class="nav-link" href="unstitched.html">Unstitched</a></li>
+        <li class="nav-item"><a class="nav-link" href="topSales.html">Top Sales</a></li>
+        <li class="nav-item"><a class="nav-link" href="aboutus.html">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+  <div class="cu-wrapper">
+    <!-- Left side Logo -->
+    <div class="cu-logo-section">
+      <img src="assets/elishalogo.jpg" alt="Brand Logo" class="cu-logo-image"/>
+    </div>
+
+    <!-- Right side Form -->
+    <div class="cu-form-section">
+      <form class="cu-contact-box">
+        <h2 class="cu-heading">Contact us</h2>
+
+        <label class="cu-label">Full Name</label>
+        <input type="text" class="cu-input" placeholder="Enter your name" required/>
+
+        <label class="cu-label">E-mail</label>
+        <input type="email" class="cu-input" placeholder="Enter your email" required/>
+
+        <label class="cu-label">Message</label>
+        <textarea class="cu-textarea" placeholder="Write your message" rows="4" required></textarea>
+
+        <!-- ✅ Button and icons in one row -->
+        <div class="cu-action-row">
+          <button type="submit" class="cu-submit-btn">Contact us :</button>
+          <div class="cu-socials">
+            <a href="#" class="cu-icon-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="cu-icon-link"><i class="fab fa-tiktok"></i></a>
+            <a href="#" class="cu-icon-link"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <!-- ✅ End row -->
+      </form>
+    </div>
+  </div>
+  <footer class="footer">
+  <div class="footer-container">
+    <!-- Logo -->
+    <div class="footer-logo">
+      <img src="assets/elishalogo.jpg" alt="Elisha Logo">
+    </div>
+
+    <!-- Customer Services -->
+    <div class="footer-section">
+      <h4>CUSTOMER SERVICES</h4>
+      <ul>
+        <li>Contact Us</li>
+        <li>Delivery & Orders</li>
+        <li>Returns & Exchanges</li>
+        <li>Terms & Conditions</li>
+        <li>Privacy Policy</li>
+        <li>Track My Order</li>
+        <li>Payment Guides</li>
+      </ul>
+    </div>
+
+    <!-- For Assistance -->
+    <div class="footer-section">
+      <h4>FOR ASSISTANCE</h4>
+      <p>Whatsapp: 0322 6773534<br>Email: elisha@gmail.com</p>
+      <div class="social-icons">
+  <a href="https://facebook.com/YourPageName" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+  <a href="https://www.tiktok.com/@YourPageName" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+    <i class="fab fa-tiktok"></i>
+  </a>
+  <a href="https://instagram.com/YourPageName" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+  <a href="https://www.youtube.com/channel/YourChannelID" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+    <i class="fab fa-youtube"></i>
+  </a>
+</div>
+    </div>
+
+    <!-- Currency & Company -->
+    <div class="footer-section">
+      <h4>CURRENCY</h4>
+      <p>🇵🇰 PRK</p>
+      <h4>COMPANY</h4>
+      <ul>
+        <li>About us</li>
+        <li>Careers</li>
+        <li>Store locator</li>
+        <li>Store addresses</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js" ></script>
+</body>
+</html>

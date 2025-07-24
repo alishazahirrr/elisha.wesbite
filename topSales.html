@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Sales Section</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Link to external style.css for footer and other custom styles -->
+   
+    <style>
+        /* Custom styles if needed, though Tailwind should cover most of it */
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: white; /* Changed to white background for the body */
+        }
+        .filter-button {
+            padding: 0.5rem 1.25rem; /* Adjust padding for filter buttons */
+            border-radius: 9999px; /* Fully rounded corners */
+            border: 1px solid #ccc; /* Light gray border */
+            background-color: #ede9fe; /* Light purple background for buttons */
+            color: #333;
+            font-size: 0.875rem; /* Small font size */
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            display: flex; /* Added for dropdown icon alignment */
+            align-items: center; /* Added for dropdown icon alignment */
+            gap: 0.25rem; /* Space between text and icon */
+        }
+        .filter-button:hover {
+            background-color: #ddd6fe; /* Slightly darker purple on hover */
+        }
+        /* The sort-by-button style is now merged with filter-select for consistency */
+        .category-card {
+            background-color: white;
+            border-radius: 1rem; /* Slightly rounded corners for cards */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 1rem;
+        }
+        .category-image-container {
+            width: 200px; /* Increased width for circular images */
+            height: 200px; /* Increased height for circular images */
+            border-radius: 50%; /* Make it circular */
+            overflow: hidden;
+            border: 5px solid #ccc; /* Gray border around image */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 1rem auto; /* Center image and add bottom margin */
+        }
+        .category-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure image covers the circular area */
+        }
+        .shop-now-button {
+            background-color: #333; /* Dark button color */
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .shop-now-button:hover {
+            background-color: #555;
+        }
+        /* Style for select dropdowns to match buttons */
+        .filter-select {
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            border: 1px solid #ccc;
+            background-color: #ede9fe; /* Light purple background for select dropdowns */
+            color: #333;
+            font-size: 0.875rem;
+            cursor: pointer;
+            appearance: none; /* Remove default select arrow */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-4 w-4' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd' /%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+            padding-right: 2.5rem; /* Make space for the custom arrow */
+        }
+        .product-card {
+            border: none; /* Removed border from product card */
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            width: 100%; /* Make width responsive within grid */
+            max-width: 280px; /* Max width for product cards */
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-image {
+            width: 100%;
+            height: 350px; /* Increased height for product images */
+            object-fit: cover;
+        }
+        .pagination-button {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #ccc;
+            background-color: white;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+        .pagination-button:hover {
+            background-color: #f0f0f0;
+        }
+        .pagination-button.active {
+            background-color: #6d28d9; /* Purple for active page */
+            color: white;
+            border-color: #6d28d9;
+        }
+        /* Sticky filter section styles */
+        .sticky-filter-section {
+            position: sticky;
+            margin: o;
+           
+            top: 0;
+            z-index: 100; /* Ensure it stays on top of other content */
+            background-color: white; /* Changed to white background for sticky section */
+        }
+
+        /* Carousel specific styles */
+        .elisha-carousel-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem; /* Add some space below the carousel */
+        }
+
+        .elisha-carousel-track {
+            display: flex;
+            overflow-x: auto; /* Enable horizontal scrolling */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            scroll-snap-type: x mandatory; /* Snap to items */
+            gap: 5px; /* Reduced gap between carousel items */
+            padding: 0 12px; /* Add horizontal padding to match previous layout */
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+            -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+        }
+
+        .elisha-carousel-track::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari, Opera */
+        }
+
+        .elisha-carousel-item {
+            flex: 0 0 auto; /* Prevent items from shrinking */
+            scroll-snap-align: start; /* Align items to the start of the scroll area */
+            text-align: center;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 240px; /* Slightly increased width to accommodate larger images */
+        }
+
+        .elisha-circle {
+            width: 200px; /* Match category-image-container width */
+            height: 200px; /* Match category-image-container height */
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 1rem auto;
+        }
+
+        .elisha-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .elisha-caption {
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 500; /* font-medium */
+            color: #333; /* text-gray-800 */
+            margin-bottom: 0.75rem; /* mb-3 */
+        }
+
+        .elisha-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            padding: 0.5rem;
+            background-color: white;
+            border-radius: 9999px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .elisha-arrow:hover {
+            background-color: #f0f0f0;
+        }
+
+        .elisha-arrow-left {
+            left: 1rem;
+        }
+
+        .elisha-arrow-right {
+            right: 1rem;
+        }
+
+        .elisha-arrow img {
+            width: 24px; /* h-6 */
+            height: 24px; /* w-6 */
+            color: #4b5563; /* text-gray-600 */
+        }
+
+        /* Custom styles for the new header */
+        /* Center logo */
+        .logo-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Right aligned icons */
+        .header-icons-right { /* Renamed from .header-icons to avoid conflict */
+            position: absolute;
+            top: 50%; /* vertically center with logo */
+            right: 20px; /* distance from right edge */
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-icons-right a {
+            font-size: 1.4rem; /* Adjusted to 1.4rem as per your latest provided CSS */
+            color: black;
+            transition: color 0.3s;
+        }
+
+        .header-icons-right a:hover {
+            color: #555;
+        }
+
+        .navbar {
+            border-top: none !important;
+            box-shadow: none !important;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 1.2rem;   /* 👈 thoda bara text */
+            font-weight: 700;    /* 👈 bold text */
+            color: black; /* Changed to black as per user's last override */
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background-color: black;
+            left: 0;
+            bottom: 0;
+            transition: width 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover::after,
+        .navbar-nav .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Responsive adjustments for mobile navbar */
+        @media (max-width: 991px) {
+            /* Mobile header row */
+            .mobile-header-row {
+                display: flex;
+                justify-content: space-between; /* Space between logo and toggler */
+                align-items: center;
+                width: 100%;
+                padding: 0.5rem 1rem; /* Add some padding */
+            }
+
+            .mobile-menu-button {
+                display: block; /* Show on small screens */
+                /* No margin-left: auto; here, as justify-content: space-between handles alignment */
+            }
+            .mobile-menu {
+                display: none; /* Hidden by default on small screens */
+                flex-direction: column;
+                align-items: center; /* Center items on mobile */
+                width: 100%; /* Full width */
+                padding: 1rem; /* Equivalent to 15px */
+                border: 2px solid #000; /* Black outline */
+                border-radius: 6px; /* Rounded corners */
+                background-color: #fff; /* White background */
+                margin-top: 10px; /* Space below navbar */
+            }
+            .mobile-menu.active {
+                display: flex; /* Show when active */
+            }
+            .navbar-nav {
+                flex-direction: column !important; /* Ensure column direction */
+                align-items: center; /* Center items */
+                padding: 0; /* Reset padding from parent */
+            }
+            .navbar-nav .nav-link {
+                padding: 8px 0; /* Adjust padding for mobile links */
+                font-size: 1rem; /* Adjust font size for mobile links */
+                width: 100%; /* Full width for mobile links */
+            }
+            /* Hide the desktop logo on mobile */
+            .header-logo-desktop {
+                display: none;
+            }
+            /* Adjust top header icons for mobile */
+            .header-icons-right {
+                right: 10px; /* Adjust right position for mobile */
+                gap: 10px; /* Adjust gap for mobile */
+            }
+        }
+
+        @media (min-width: 992px) { /* Equivalent to Bootstrap's lg breakpoint */
+            .mobile-header-row {
+                display: none; /* Hide on large screens */
+            }
+            .mobile-menu-button {
+                display: none; /* Hide on large screens */
+            }
+            .mobile-menu {
+                display: flex !important; /* Always show on large screens */
+                flex-direction: row;
+                justify-content: center;
+                width: auto;
+                margin-top: 0;
+                border: none;
+                padding: 0;
+                background-color: transparent;
+            }
+            /* Show the desktop logo on desktop */
+            .header-logo-desktop {
+                display: flex;
+            }
+            /* Hide the mobile logo on desktop */
+            .header-logo-mobile {
+                display: none;
+            }
+        }
+
+        .categories1{
+            font-size: 50px;
+            font-weight: 700;
+            margin-top: 50px;
+        }
+
+        /* Footer styles */
+        .footer {
+            background-color: #e0d6ca;
+            padding: 40px 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            flex: 1 1 100%; /* Take full width on small screens */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            height: 80px; /* Adjust logo size */
+        }
+
+        .footer-section {
+            flex: 1 1 calc(50% - 20px); /* Two columns on medium screens */
+            margin-bottom: 20px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: #555;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .footer-section ul li:hover {
+            color: #000;
+        }
+
+        .footer-section p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .social-icons {
+            margin-top: 15px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            font-size: 1.5rem;
+            color: #555;
+            transition: color 0.2s ease;
+        }
+
+        .social-icons a:hover {
+            color: #000;
+        }
+
+        /* Responsive adjustments for footer */
+        @media (min-width: 768px) {
+            .footer-section {
+                flex: 1 1 calc(25% - 20px); /* Four columns on larger screens */
+            }
+            .footer-logo {
+                flex: 1 1 auto; /* Adjust logo width on larger screens */
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen mt-10 ">
+    <!-- 🔷 TOP HEADER: Logo Center + Icons Right (Converted to Tailwind) -->
+    <div class="container mx-auto pt-[30px] pb-3 relative">
+        <!-- Center Logo (Desktop) -->
+        <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-center header-logo-desktop logo-center">
+            <img src="assets/elishalogo.jpg" alt="Elisha Logo" class="h-[60px]">
+        </div>
+
+        <!-- Right Icons -->
+        <div class="header-icons-right">
+            <a href="#" class="header-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                </svg>
+            </a>
+            <a href="#" class="header-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                </svg>
+            </a>
+            <a href="#" class="header-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- 🔷 MOBILE FRIENDLY NAVBAR (Converted to Tailwind + JS) -->
+    <nav class="bg-white border-b py-2 navbar mt-5">
+        <div class="container mx-auto px-4">
+            <!-- Mobile Header Row: Logo and Toggler -->
+            <div class="mobile-header-row">
+                <!-- Left side logo (for smaller screens) -->
+                <a class="flex items-center header-logo-mobile" href="#">
+                    <img src="assets/elishalogo.jpg" alt="Elisha Logo" class="h-[50px]">
+                </a>
+
+                <!-- Right side toggler (for smaller screens) -->
+                <button id="mobile-menu-button" class="mobile-menu-button p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Menu items -->
+            <div id="main-navbar" class="mobile-menu flex-col lg:flex-row lg:flex lg:justify-center lg:w-auto w-full mt-2 lg:mt-0">
+                <ul class="flex flex-col lg:flex-row gap-4 lg:gap-8 text-gray-700 text-lg font-medium navbar-nav">
+                    <li><a class="block py-2 px-4 hover:text-purple-700 rounded-md transition-colors nav-link" href="index.html">Home</a></li>
+                    <li><a class="block py-2 px-4 hover:text-purple-700 rounded-md transition-colors nav-link" href="women.html">Women</a></li>
+                    <li><a class="block py-2 px-4 hover:text-purple-700 rounded-md transition-colors nav-link" href="stitched.html">Stitched</a></li>
+                    <li><a class="block py-2 px-4 hover:text-purple-700 rounded-md transition-colors nav-link" href="unstitched.html">Unstitched</a></li>
+                    <li><a class="block py-2 px-4 hover:text-purple-700 rounded-md transition-colors nav-link" href="topSales.html">Top Sales</a></li>
+                    <li><a class="block py-2 px-4 hover:text-purple-700 rounded-md transition-colors nav-link" href="aboutus.html">About Us</a></li>
+                    <li><a class="block py-2 px-4 hover:text-purple-700 rounded-md transition-colors nav-link" href="contactus.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <!-- Top Sales Section -->
+        <section class="text-center mb-10">
+            <h1 class="text-4xl font-semibold text-gray-800 mb-4">Top Sales</h1>
+            <p class="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                Elisha offers a vast selection of women's clothing to shop. Each season brings a fresh assortment of Elisha pieces to match your mood.
+            </p>
+        </section>
+
+        <!-- Sticky Filter Section Container -->
+        <div class="sticky-filter-section">
+            <!-- Filter and Sort By Section -->
+            <section class="flex flex-wrap justify-center gap-3 mb-12 p-4 rounded-lg">
+                <!-- Filter Dropdown -->
+                <select id="filter-category" class="filter-select">
+                    <option value="">Filter</option>
+                    <option value="new-arrivals">New Arrivals</option>
+                    <option value="best-sellers">Best Sellers</option>
+                    <option value="clearance">Clearance</option>
+                </select>
+
+                <button class="filter-button">Readyship</button>
+
+                <!-- Size Dropdown -->
+                <select id="filter-size" class="filter-select">
+                    <option value="">Size</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                </select>
+
+                <!-- Price Dropdown - Updated to PKR and relevant ranges -->
+                <select id="filter-price" class="filter-select">
+                    <option value="">Price</option>
+                    <option value="0-1500">PKR 0 - PKR 1500</option>
+                    <option value="1501-3000">PKR 1501 - PKR 3000</option>
+                    <option value="3001-5000">PKR 3001 - PKR 5000</option>
+                    <option value="5001-above">PKR 5001+</option>
+                </select>
+
+                <!-- Discount Dropdown -->
+                <select id="filter-discount" class="filter-select">
+                    <option value="">Discount</option>
+                    <option value="10-25">10% - 25%</option>
+                    <option value="25-50">25% - 50%</option>
+                    <option value="50-75">50% - 75%</option>
+                    <option value="75-above">75%+</option>
+                </select>
+
+                <!-- Sort By Dropdown -->
+                <select id="sort-by" class="filter-select">
+                    <option value="">Sort By</option>
+                    <option value="best-selling">Best Selling</option>
+                    <option value="newest-first">Newest First</option>
+                    <option value="price-low-high">Price: Low to High</option>
+                    <option value="price-high-low">Price: High to Low</option>
+                </select>
+            </section>
+        </div>
+        <!-- End Sticky Filter Section Container -->
+
+        <!-- Categories Section (Carousel) -->
+        <div class="elisha-carousel-wrap">
+            <button class="elisha-arrow elisha-arrow-left">
+                <img src="assets/left arrow.png" alt="Left Arrow">
+            </button>
+
+            <div class="elisha-carousel-track" id="elishaCarouselTrack">
+                <!-- Add as many as you like -->
+                <div class="elisha-carousel-item">
+                    <div class="elisha-circle">
+                        <img src="assets/university wear.jpg" alt="University Wear">
+                    </div>
+                    <div class="elisha-caption">UNIVERSITY WEAR</div>
+                </div>
+                <div class="elisha-carousel-item">
+                    <div class="elisha-circle">
+                        <img src="assets/wedding wear.jpg" alt="Shaddi Baya Wear">
+                    </div>
+                    <div class="elisha-caption">SHADDI BAYA WEAR</div>
+                </div>
+                <div class="elisha-carousel-item">
+                    <div class="elisha-circle">
+                        <img src="assets/abayas2.jpg" alt="Abayas">
+                    </div>
+                    <div class="elisha-caption">ABAYAS</div>
+                </div>
+                <div class="elisha-carousel-item">
+                    <div class="elisha-circle">
+                        <img src="assets/desi wear2.jpg" alt="Desi Wear">
+                    </div>
+                    <div class="elisha-caption">DESI WEAR</div>
+                </div>
+                <div class="elisha-carousel-item">
+                    <div class="elisha-circle">
+                        <img src="assets/kids wear.jpg" alt="Kids Wear">
+                    </div>
+                    <div class="elisha-caption">KIDS WEAR</div>
+                </div>
+                <div class="elisha-carousel-item">
+                    <div class="elisha-circle">
+                        <img src="assets/westtren wear.jpg" alt="Western Wear">
+                    </div>
+                    <div class="elisha-caption">WESTERN WEAR</div>
+                </div>
+            </div>
+
+            <button class="elisha-arrow elisha-arrow-right">
+                <img src="assets/right arrow.png" alt="Right Arrow">
+            </button>
+        </div>
+
+        <!-- Product Display Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Our Collection</h2>
+            <!-- Changed grid layout to 3 columns and adjusted for responsiveness -->
+            <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-[5px] gap-y-6 justify-items-center">
+                <!-- Product cards will be loaded here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Pagination Controls -->
+        <section class="flex justify-center mt-8">
+            <div id="pagination-controls" class="flex gap-2">
+                <!-- Pagination buttons will be loaded here by JavaScript -->
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Logo -->
+            <div class="footer-logo">
+                <img src="assets/elishalogo.jpg" alt="Elisha Logo">
+            </div>
+
+            <!-- Customer Services -->
+            <div class="footer-section">
+                <h4>CUSTOMER SERVICES</h4>
+                <ul>
+                    <li>Contact Us</li>
+                    <li>Delivery & Orders</li>
+                    <li>Returns & Exchanges</li>
+                    <li>Terms & Conditions</li>
+                    <li>Privacy Policy</li>
+                    <li>Track My Order</li>
+                    <li>Payment Guides</li>
+                </ul>
+            </div>
+
+            <!-- For Assistance -->
+            <div class="footer-section">
+                <h4>FOR ASSISTANCE</h4>
+                <p>Whatsapp: 0322 6773534<br>Email: elisha@gmail.com</p>
+                <div class="social-icons">
+                    <a href="https://facebook.com/YourPageName" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@YourPageName" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="https://instagram.com/YourPageName" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/channel/YourChannelID" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Currency & Company -->
+            <div class="footer-section">
+                <h4>CURRENCY</h4>
+                <p>🇵🇰 PRK</p>
+                <h4>COMPANY</h4>
+                <ul>
+                    <li>About us</li>
+                    <li>Careers</li>
+                    <li>Store locator</li>
+                    <li>Store addresses</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample Product Data (More products can be added here)
+        const allProducts = [
+            { id: 1, name: 'Elegant Pink Suit', price: 2499, discount: 40, size: 'M', category: 'new-arrivals', image: 'assets/unstitched2.jpg' },
+            { id: 2, name: 'Brown Printed Dress', price: 1850, discount: 0, size: 'L', category: 'best-sellers', image: 'assets/stitced2pcs.jpg' },
+            { id: 3, name: 'Grey Casual Wear', price: 3200, discount: 20, size: 'S', category: 'clearance', image: 'assets/topsales-pic2.jpg' },
+            { id: 4, name: 'Blue Embroidered Dress', price: 1200, discount: 0, size: 'M', category: 'new-arrivals', image: 'assets/topsalespic3.jpg' },
+            { id: 5, name: 'Green Summer Outfit', price: 4500, discount: 15, size: 'L', category: 'best-sellers', image: 'assets/relatedproducts1.jpg' },
+            { id: 6, name: 'Orange Festive Wear', price: 2999, discount: 0, size: 'XL', category: 'new-arrivals', image: 'assets/relatedproducts2.jpg' },
+            { id: 7, name: 'Classic Black Abaya', price: 5100, discount: 10, size: 'M', category: 'best-sellers', image: 'assets/relatedproducts3.jpg' },
+            { id: 8, name: 'White Lawn Suit', price: 1400, discount: 0, size: 'S', category: 'new-arrivals', image: 'assets/relatedproducts4.jpg' },
+            { id: 9, name: 'Red Party Dress', price: 3800, discount: 25, size: 'L', category: 'clearance', image: 'assets/silk.jpeg' },
+            { id: 10, name: 'Yellow Cotton Dress', price: 1950, discount: 0, size: 'M', category: 'new-arrivals', image: 'assets/cotton.jpg' },
+            { id: 11, name: 'Purple Evening Gown', price: 5500, discount: 30, size: 'XL', category: 'best-sellers', image: 'assets/organza.webp' },
+            { id: 12, name: 'Brown Floral Top', price: 999, discount: 0, size: 'S', category: 'new-arrivals', image: 'assets/unstiched3pcs3.jpg' },
+            { id: 13, name: 'Light Blue Kurta', price: 2100, discount: 5, size: 'M', category: 'best-sellers', image: 'assets/arrival 4.jpg' },
+            { id: 14, name: 'Dark Green Velvet', price: 4900, discount: 10, size: 'L', category: 'new-arrivals', image: 'assets/university wear.jpg' },
+            { id: 15, name: 'Cream Embroidered', price: 2750, discount: 0, size: 'XL', category: 'clearance', image: 'assets/westtren wear.jpg' },
+            { id: 16, name: 'Maroon Silk Suit', price: 3100, discount: 20, size: 'S', category: 'best-sellers', image: 'assets/3images.webp' },
+            { id: 17, name: 'Olive Green Dress', price: 2200, discount: 0, size: 'M', category: 'new-arrivals', image: 'assets/option2.jpg' },
+            { id: 18, name: 'Navy Blue Gown', price: 4800, discount: 15, size: 'L', category: 'best-sellers', image: 'assets/new4.webp' },
+            { id: 19, name: 'Peach Casual Top', price: 1150, discount: 0, size: 'S', category: 'new-arrivals', image: 'assets/arrival3.jpg' },
+            { id: 20, name: 'Gold Party Wear', price: 3500, discount: 10, size: 'M', category: 'clearance', image: 'assets/arrival 4.jpg' },
+            { id: 21, name: 'Elegant Pink Suit 2', price: 2600, discount: 12, size: 'M', category: 'new-arrivals', image: 'assets/unstitched2.jpg' },
+            { id: 22, name: 'Brown Printed Dress 2', price: 1900, discount: 5, size: 'L', category: 'best-sellers', image: 'assets/stitced2pcs.jpg' },
+            { id: 23, name: 'Grey Casual Wear 2', price: 3300, discount: 22, size: 'S', category: 'clearance', image: 'assets/topsales-pic2.jpg' },
+            { id: 24, name: 'Blue Embroidered Dress 2', price: 1300, discount: 0, size: 'M', category: 'new-arrivals', image: 'assets/topsalespic3.jpg' },
+            { id: 25, name: 'Green Summer Outfit 2', price: 4600, discount: 17, size: 'L', category: 'best-sellers', image: 'assets/relatedproducts1.jpg' },
+            { id: 26, name: 'Orange Festive Wear 2', price: 3050, discount: 0, size: 'XL', category: 'new-arrivals', image: 'assets/relatedproducts2.jpg' },
+            { id: 27, name: 'Classic Black Abaya 2', price: 5200, discount: 12, size: 'M', category: 'best-sellers', image: 'assets/relatedproducts3.jpg' },
+            { id: 28, name: 'White Lawn Suit 2', price: 1450, discount: 0, size: 'S', category: 'new-arrivals', image: 'assets/relatedproducts4.jpg' },
+            { id: 29, name: 'Red Party Dress 2', price: 3900, discount: 27, size: 'L', category: 'clearance', image: 'assets/silk.jpeg' },
+            { id: 30, name: 'Yellow Cotton Dress 2', price: 2000, discount: 0, size: 'M', category: 'new-arrivals', image: 'assets/cotton.jpg' },
+            { id: 31, name: 'Purple Evening Gown 2', price: 5600, discount: 32, size: 'XL', category: 'best-sellers', image: 'assets/organza.webp' },
+            { id: 32, name: 'Brown Floral Top 2', price: 1050, discount: 0, size: 'S', category: 'new-arrivals', image: 'assets/unstiched3pcs3.jpg' },
+            { id: 33, name: 'Light Blue Kurta 2', price: 2150, discount: 7, size: 'M', category: 'best-sellers', image: 'assets/arrival 4.jpg' },
+            { id: 34, name: 'Dark Green Velvet 2', price: 5000, discount: 12, size: 'L', category: 'new-arrivals', image: 'assets/university wear.jpg' },
+            { id: 35, name: 'Cream Embroidered 2', price: 2800, discount: 0, size: 'XL', category: 'clearance', image: 'assets/westtren wear.jpg' },
+            { id: 36, name: 'Maroon Silk Suit 2', price: 3200, discount: 22, size: 'S', category: 'best-sellers', image: 'assets/3images.webp' },
+        ];
+
+        let currentPage = 1;
+        const productsPerPage = 9; // Number of products to show per page (3 columns * 3 rows)
+
+        const productListDiv = document.getElementById('product-list');
+        const paginationControlsDiv = document.getElementById('pagination-controls');
+        const filterCategory = document.getElementById('filter-category');
+        const filterSize = document.getElementById('filter-size');
+        const filterPrice = document.getElementById('filter-price');
+        const filterDiscount = document.getElementById('filter-discount');
+        const sortBy = document.getElementById('sort-by');
+
+        // Carousel functionality
+        const carouselTrack = document.getElementById('elishaCarouselTrack');
+        const leftArrow = document.querySelector('.elisha-arrow-left');
+        const rightArrow = document.querySelector('.elisha-arrow-right');
+
+        if (carouselTrack && leftArrow && rightArrow) {
+            leftArrow.addEventListener('click', () => {
+                carouselTrack.scrollBy({
+                    left: -carouselTrack.offsetWidth / 2, // Scroll by half the visible width
+                    behavior: 'smooth'
+                });
+            });
+
+            rightArrow.addEventListener('click', () => {
+                carouselTrack.scrollBy({
+                    left: carouselTrack.offsetWidth / 2, // Scroll by half the visible width
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+
+        // Function to render product cards
+        function renderProducts(productsToDisplay) {
+            productListDiv.innerHTML = ''; // Clear previous products
+            productsToDisplay.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="p-4 flex flex-col justify-between h-full">
+                        <div>
+                            <h3 class="font-semibold text-lg mb-1">${product.name}</h3>
+                            <p class="text-gray-500 text-sm mb-2">Size: ${product.size}</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto">
+                            <div>
+                                <p class="text-gray-700 font-semibold text-base">Rs. ${product.price.toFixed(0)}</p>
+                                ${product.discount > 0 ? `<p class="text-red-500 text-sm">-${product.discount}% OFF</p>` : '<p class="text-sm">&nbsp;</p>'}
+                            </div>
+                            <button class="shop-now-button px-3 py-1 text-sm">Buy Now</button>
+                        </div>
+                    </div>
+                `;
+                productListDiv.appendChild(productCard);
+            });
+        }
+
+        // Function to render pagination buttons
+        function renderPagination(filteredProducts) {
+            paginationControlsDiv.innerHTML = ''; // Clear previous buttons
+            const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement('button');
+                button.textContent = i;
+                button.className = `pagination-button ${i === currentPage ? 'active' : ''}`;
+                button.addEventListener('click', () => {
+                    currentPage = i;
+                    applyFiltersAndSort(); // Re-apply filters and sort to get correct page
+                });
+                paginationControlsDiv.appendChild(button);
+            }
+        }
+
+        // Function to apply all filters and sorting
+        function applyFiltersAndSort() {
+            let filtered = [...allProducts]; // Start with a copy of all products
+
+            // Apply Category Filter
+            const selectedCategory = filterCategory.value;
+            if (selectedCategory) {
+                if (selectedCategory === 'new-arrivals') {
+                    filtered = filtered.filter(p => p.category === 'new-arrivals');
+                } else if (selectedCategory === 'best-sellers') {
+                    filtered = filtered.filter(p => p.category === 'best-sellers');
+                } else if (selectedCategory === 'clearance') {
+                    filtered = filtered.filter(p => p.category === 'clearance');
+                }
+            }
+
+            // Apply Size Filter
+            const selectedSize = filterSize.value;
+            if (selectedSize) {
+                filtered = filtered.filter(product => product.size === selectedSize);
+            }
+
+            // Apply Price Filter
+            const selectedPriceRange = filterPrice.value;
+            if (selectedPriceRange) {
+                const [minStr, maxStr] = selectedPriceRange.split('-');
+                const min = parseInt(minStr);
+                let max = parseInt(maxStr);
+
+                filtered = filtered.filter(product => {
+                    if (selectedPriceRange === '5001-above') { // Updated value for "above" range
+                        return product.price >= 5001; // Updated threshold
+                    }
+                    return product.price >= min && product.price <= max;
+                });
+            }
+
+            // Apply Discount Filter
+            const selectedDiscountRange = filterDiscount.value;
+            if (selectedDiscountRange) {
+                const [min, max] = selectedDiscountRange.split('-').map(val => parseInt(val));
+                filtered = filtered.filter(product => {
+                    if (selectedDiscountRange === '75-above') {
+                        return product.discount >= 75;
+                    }
+                    return product.discount >= min && product.discount <= max;
+                });
+            }
+
+            // Apply Sorting
+            const selectedSort = sortBy.value;
+            if (selectedSort) {
+                filtered.sort((a, b) => {
+                    if (selectedSort === 'best-selling') {
+                        return b.price - a.price; // Higher price for best selling (example)
+                    } else if (selectedSort === 'newest-first') {
+                        return b.id - a.id; // Higher ID for newest (example)
+                    } else if (selectedSort === 'price-low-high') {
+                        return a.price - b.price;
+                    } else if (selectedSort === 'price-high-low') {
+                        return b.price - a.price;
+                    }
+                    return 0;
+                });
+            }
+
+            // Calculate products for the current page
+            const startIndex = (currentPage - 1) * productsPerPage;
+            const endIndex = startIndex + productsPerPage;
+            const productsOnPage = filtered.slice(startIndex, endIndex);
+
+            renderProducts(productsOnPage);
+            renderPagination(filtered); // Render pagination based on *filtered* products
+        }
+
+        // Add event listeners to filters and sort dropdowns
+        filterCategory.addEventListener('change', () => { currentPage = 1; applyFiltersAndSort(); });
+        filterSize.addEventListener('change', () => { currentPage = 1; applyFiltersAndSort(); });
+        filterPrice.addEventListener('change', () => { currentPage = 1; applyFiltersAndSort(); });
+        filterDiscount.addEventListener('change', () => { currentPage = 1; applyFiltersAndSort(); });
+        sortBy.addEventListener('change', () => { currentPage = 1; applyFiltersAndSort(); });
+
+        // Mobile menu toggle functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mainNavbar = document.getElementById('main-navbar');
+
+            if (mobileMenuButton && mainNavbar) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mainNavbar.classList.toggle('active');
+                });
+            }
+        });
+
+        // Initial render on page load
+        window.onload = applyFiltersAndSort;
+    </script>
+</body>
+</html>

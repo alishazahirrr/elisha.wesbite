@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elisha Team Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      color: #333;
+    }
+
+    .elisha-wrapper-x23 {
+      width: 100%;
+      padding-top: 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .elisha-team-grid-x23 {
+      max-width: calc(100% - 100px);
+      margin: 0 auto 40px auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; 
+      gap: 40px;
+    }
+
+    .elisha-member-card-x23 {
+      text-align: center;
+      flex: 0 0 calc(20% - 40px);
+      min-width: 140px;
+      margin-bottom: 20px;
+    }
+
+    .elisha-round-frame-x23 {
+      width: 140px;
+      height: 140px;
+      background-color: #f0f0f0;
+      border: 2px solid #999;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+    }
+
+    .elisha-frame-text-x23 {
+      font-weight: bold;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .elisha-role-title-x23 {
+      font-size: 16px;
+      margin: 5px 0;
+      font-weight: 600;
+    }
+
+    .elisha-name-tag-x23 {
+      font-size: 13px;
+      background-color: #e8e8e8;
+      padding: 5px 12px;
+      border-radius: 15px;
+      display: inline-block;
+    }
+
+    .elisha-message-wrap-x23 {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 14px;
+      line-height: 1.7;
+      text-align: left; 
+      padding: 0 10px;
+    }
+
+    .elisha-message-heading-x23 {
+      font-size: 17px;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: black;
+    }
+
+    .elisha-subheading-x23 {
+      font-size: 15px;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #150f1f;
+    }
+    
+    .elisha-text-section-x23 {
+      max-width: 700px;
+      padding: 0 20px;
+      margin: 0 auto;
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #150f1f;
+      text-align: left;
+    }
+
+    .elisha-text-section-x23 p {
+      margin: 10px 0;
+    }
+
+    .elisha-text-bold-x23 {
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    
+    .elisha-header {
+      text-align: center;
+      padding: 20px 0;
+      background: linear-gradient(135deg, #8a2be2, #5d3a9b);
+      color: white;
+      margin-bottom: 30px;
+    }
+    
+    .elisha-header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+    }
+    
+    .elisha-header p {
+      margin: 10px 0 0;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    
+    .elisha-contact-bar {
+      background-color: #f8f8f8;
+      padding: 15px;
+      text-align: center;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      margin: 30px 0;
+    }
+    
+    .elisha-signature {
+      font-style: italic;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 2px solid #eee;
+    }
+.elisha-round-frame-x23 {
+    width: 140px;
+    height: 140px;
+    background-color: #f0f0f0;
+    border: 2px solid #999;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* ensures image stays inside circle */
+}
+
+.elisha-circle-logo-x23 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* fill circle without distortion */
+    border-radius: 50%; /* ensures circular crop */
+}
+.elisha-round-frame-x23 {
+    width: 140px;
+    height: 140px;
+    background-color: #f0f0f0;
+    border: 4px solid #999; /* wider border */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.elisha-circle-logo-x23 {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* show full image without cutting */
+    border-radius: 50%;
+    background-color: #f0f0f0; /* in case image has transparency */
+}
+
+
+    /* Responsive Styles */
+    @media (max-width: 1200px) {
+      .elisha-member-card-x23 {
+        flex: 0 0 calc(25% - 40px);
+      }
+      
+      .elisha-message-wrap-x23 {
+        margin-left: 50px;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .elisha-member-card-x23 {
+        flex: 0 0 calc(33.33% - 40px);
+      }
+      
+      .elisha-message-wrap-x23 {
+        margin-left: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .elisha-team-grid-x23 {
+        gap: 30px;
+        max-width: 100%;
+        padding: 0 20px;
+      }
+      
+      .elisha-member-card-x23 {
+        flex: 0 0 calc(50% - 30px);
+      }
+      
+      .elisha-round-frame-x23 {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .elisha-message-wrap-x23 {
+        margin-left: 0;
+        padding: 0 20px;
+      }
+      
+      .elisha-header h1 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .elisha-member-card-x23 {
+        flex: 0 0 100%;
+        max-width: 220px;
+      }
+      
+      .elisha-team-grid-x23 {
+        gap: 20px;
+      }
+      
+      .elisha-round-frame-x23 {
+        width: 100px;
+        height: 100px;
+      }
+      
+      .elisha-role-title-x23 {
+        font-size: 15px;
+      }
+      
+      .elisha-name-tag-x23 {
+        font-size: 12px;
+      }
+      
+      .elisha-message-wrap-x23 {
+        font-size: 14px;
+      }
+      
+      .elisha-header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .elisha-header p {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .elisha-wrapper-x23 {
+        padding: 10px;
+      }
+      
+      .elisha-team-grid-x23 {
+        margin-bottom: 20px;
+      }
+      
+      .elisha-round-frame-x23 {
+        width: 90px;
+        height: 90px;
+      }
+      
+      .elisha-frame-text-x23 {
+        font-size: 14px;
+      }
+      
+      .elisha-message-wrap-x23 {
+        padding: 0;
+      }
+    }
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+<div class="container py-3 position-relative">
+    <!-- Center Logo -->
+    <div class="logo-center">
+        <img src="assets/elishalogo.jpg" alt="Elisha Logo" style="height:60px;">
+    </div>
+
+    <!-- Right Icons aligned exactly right -->
+    <div class="header-icons">
+        <a href="#"><i class="bi bi-search"></i></a>
+        <a href="#"><i class="bi bi-person"></i></a>
+        <a href="#"><i class="bi bi-bag"></i></a>
+    </div>
+</div>
+
+
+
+ <!-- 🔷 MOBILE FRIENDLY NAVBAR -->
+<nav class="navbar navbar-expand-lg bg-white border-bottom py-2">
+  <div class="container-fluid">
+    
+    <!-- Left side logo -->
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="assets/elishalogo.jpg" alt="Elisha Logo" style="height:50px;">
+    </a>
+    
+    <!-- Right side toggler -->
+    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu items (collapsed on small screens) -->
+     <div class="collapse navbar-collapse justify-content-center" id="mainNavbar">
+      <ul class="navbar-nav gap-4">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="women.html">Women</a></li>
+        <li class="nav-item"><a class="nav-link" href="stitched.html">Stitched</a></li>
+        <li class="nav-item"><a class="nav-link" href="unstitched.html">Unstitched</a></li>
+        <li class="nav-item"><a class="nav-link" href="topSales.html">Top Sales</a></li>
+        <li class="nav-item"><a class="nav-link" href="aboutus.html">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+  
+  
+  <div class="elisha-wrapper-x23">
+    <section class="elisha-team-grid-x23">
+      <div class="elisha-member-card-x23">
+        <div class="elisha-round-frame-x23">
+<img src="assets/elishalogo.jpg" alt="Elisha Logo" class="elisha-circle-logo-x23">
+        </div>
+        <h3 class="elisha-role-title-x23">Managing Director</h3>
+        <p class="elisha-name-tag-x23">Mehak Tariq</p>
+      </div>
+
+      <div class="elisha-member-card-x23">
+        <div class="elisha-round-frame-x23">
+<img src="assets/elishalogo.jpg" alt="Elisha Logo" class="elisha-circle-logo-x23">
+        </div>
+        <h3 class="elisha-role-title-x23">Business Partner</h3>
+        <p class="elisha-name-tag-x23">Danial Manzor</p>
+      </div>
+
+      <div class="elisha-member-card-x23">
+        <div class="elisha-round-frame-x23">
+<img src="assets/elishalogo.jpg" alt="Elisha Logo" class="elisha-circle-logo-x23">
+        </div>
+        <h3 class="elisha-role-title-x23">Web Developer</h3>
+        <p class="elisha-name-tag-x23">M. Waleed</p>
+      </div>
+
+      <div class="elisha-member-card-x23">
+        <div class="elisha-round-frame-x23">
+<img src="assets/elishalogo.jpg" alt="Elisha Logo" class="elisha-circle-logo-x23">
+        </div>
+        <h3 class="elisha-role-title-x23">Backend Developer</h3>
+        <p class="elisha-name-tag-x23">M. Mazz</p>
+      </div>
+
+      <div class="elisha-member-card-x23">
+        <div class="elisha-round-frame-x23">
+<img src="assets/elishalogo.jpg" alt="Elisha Logo" class="elisha-circle-logo-x23">
+        </div>
+        <h3 class="elisha-role-title-x23">Logo & UI Design</h3>
+        <p class="elisha-name-tag-x23">M. Jamal</p>
+      </div>
+    </section>
+
+  
+
+    <section class="elisha-message-wrap-x23">
+      <h4 class="elisha-message-heading-x23">Message From Managing Director:</h4>
+      <p>Dear valued fashion enthusiasts,</p>
+      <p>Exciting news awaits you as we are thrilled to introduce our brand-new clothing venture - Elisha! We are on the verge of launching an online fashion emporium that will redefine your style, elegance, and individuality. At Elisha, we believe that fashion is more than just clothing; it's a form of self-expression and an art of embracing one's uniqueness. Our carefully curated collection will cater to all your fashion desires, ensuring you step into the spotlight wherever you go.</p>
+      <p>Our team has worked tirelessly to bring you a diverse range of high-quality apparel and accessories that embody the latest trends and timeless classics. From chic casual wear to sophisticated formal ensembles, we have something special in store for every occasion and every taste.</p>
+      
+      <h5 class="elisha-subheading-x23">Meet the Mastermind:</h5>
+      <p>Allow me to introduce myself, Mehak Tariq, the Managing Director of Elisha. With an unwavering passion for fashion and a vision to bring forth a brand that resonates with the modern generation, I am delighted to embark on this sartorial journey with you.</p>
+      
+      <h5 class="elisha-subheading-x23">Stay Connected:</h5>
+      <p>As the launch of our online store approaches rapidly, we encourage you to stay connected with us. Bookmark our website domain - theelisha.com - and be the first to experience our exclusive collection. Additionally, you can reach out to us through the provided contact details for any inquiries or to join our mailing list.</p>
+      
+      <h5 class="elisha-subheading-x23">Visit Our Office:</h5>
+      <p>For our patrons in Lahore, Pakistan, we invite you to our office located at Landmark Plaza, Jail road. Come and get a sneak peek into the world of Elisha while we prepare to unveil our digital wonderland.</p>
+      
+      <h5 class="elisha-subheading-x23">Get Ready for Elisha:</h5>
+      <p>We are counting down the days until our grand opening, and we cannot wait to share the Elisha experience with all of you. Your unwavering support will be our guiding light as we embark on this exciting journey together.</p>
+      <p>Fashion forward, trendsetters - the future belongs to Elisha! Be a part of this captivating venture, and let's redefine fashion in Pakistan and beyond.</p>
+      
+      <div class="elisha-signature">
+        <p>With fashionable regards,<br> Mehak Tariq <br> Managing Director, Elisha <br> Contact: +92 306 4313804 <br> Email: info@theelisha.com</p>
+      </div>
+    </section>
+  </div>
+  <footer class="footer">
+  <div class="footer-container">
+    <!-- Logo -->
+    <div class="footer-logo">
+      <img src="assets/elishalogo.jpg" alt="Elisha Logo">
+    </div>
+
+    <!-- Customer Services -->
+    <div class="footer-section">
+      <h4>CUSTOMER SERVICES</h4>
+      <ul>
+        <li>Contact Us</li>
+        <li>Delivery & Orders</li>
+        <li>Returns & Exchanges</li>
+        <li>Terms & Conditions</li>
+        <li>Privacy Policy</li>
+        <li>Track My Order</li>
+        <li>Payment Guides</li>
+      </ul>
+    </div>
+
+    <!-- For Assistance -->
+    <div class="footer-section">
+      <h4>FOR ASSISTANCE</h4>
+      <p>Whatsapp: 0322 6773534<br>Email: elisha@gmail.com</p>
+      <div class="social-icons">
+  <a href="https://facebook.com/YourPageName" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+  <a href="https://www.tiktok.com/@YourPageName" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+    <i class="fab fa-tiktok"></i>
+  </a>
+  <a href="https://instagram.com/YourPageName" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+  <a href="https://www.youtube.com/channel/YourChannelID" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+    <i class="fab fa-youtube"></i>
+  </a>
+</div>
+    </div>
+
+    <!-- Currency & Company -->
+    <div class="footer-section">
+      <h4>CURRENCY</h4>
+      <p>🇵🇰 PRK</p>
+      <h4>COMPANY</h4>
+      <ul>
+        <li>About us</li>
+        <li>Careers</li>
+        <li>Store locator</li>
+        <li>Store addresses</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js" ></script>
+</body>
+</html>
