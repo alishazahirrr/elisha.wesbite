@@ -1058,8 +1058,9 @@ img:hover {
   
 }
 @media (max-width: 600px) {
-.social-icons{
-  margin-left: 160px;
+.social-icons {
+  display: flex;
+  justify-content: center;
 }
 }
 @media (max-width: 600px) {
