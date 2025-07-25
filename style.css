@@ -1061,6 +1061,7 @@ img:hover {
 .social-icons {
   display: flex;
   justify-content: center;
+  margin-top: 27px;
 }
 }
 @media (max-width: 600px) {
